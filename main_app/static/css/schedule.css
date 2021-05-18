@@ -1,0 +1,80 @@
+* {
+    margin: 0px auto;
+    width: 970px;
+}
+
+#wrapper{
+    border: 1px solid #ddd;
+    box-shadow: gray 2px 2px 3px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #FFFFFF;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
+    
+}
+
+h1 {
+    margin: 10px 0px 10px 0px;
+    
+}
+
+.new {
+    margin-top: 10px; 
+    width: 125px;
+    background-color: #93C62D;
+    color: white;
+    border-radius: 3px;
+    box-shadow: black 2px 2px 3px;
+    padding: 5px;
+}
+
+.trips {
+    margin: 20px;
+    border: 1px solid #ddd;
+    box-shadow: gray 2px 2px 3px;
+    text-align: center;
+}
+
+select, input, textarea {
+    width: 930px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #b57add;
+    color: white;
+}
+
+button {
+    margin-top: 10px; 
+    width: 125px;
+    background-color: #FFFFFF;
+    color: black;
+    border: 1px solid #ddd;
+    box-shadow: gray 2px 2px 3px;
+}
+
