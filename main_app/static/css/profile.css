@@ -19,8 +19,9 @@
     width: 930px;
 }
 
-.hr {
+hr {
     width: 930px;
+    color: black;
 }
 
 body {
@@ -44,4 +45,5 @@ button {
     border: 1px solid #ddd;
     box-shadow: gray 2px 2px 3px;
 }
+
 

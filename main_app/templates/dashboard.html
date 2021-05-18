@@ -16,7 +16,6 @@
 <body>
     <div id="wrapper">
         <h1>Hello, {{ logged_in.first_name }}!</h1>
-        <!-- <a class="new" href="/trip/trip_form">Create a New Trip!</a> -->
         <a href="/user/logout"> Logout</a>
         <br>
         <a href="/user/profile"> Profile</a>
@@ -27,10 +26,13 @@
         <div class="daily">
             <h2>Tip of the Day</h2>
             <h3>A good workout is a great way to clear your mind!</h3><br />
-
+            <hr class="hr">
+            <h2>Todays Challenge! -- <script>document.write(new Date().toLocaleDateString());</script> -- </h2>
+            <h4> 20 Burpees!</h4>
+            <hr class="hr">
             <h2>Post of the Day</h2>
-            <h3>Johnny Blaze</h3>
-            <h4>Just benched 1200 lbs! A new record!</h4>
+            <h4>Johnny Blaze</h4>
+            <h5>Just benched 1200 lbs! A new record!</h5>
         </div>
         <hr>
 
@@ -41,6 +43,7 @@
             {% endfor %}
         </ul>
         {% endif %}
+
         <div class="post">
             <form action="/user/post" method="POST">
                 {% csrf_token %}
@@ -50,15 +53,37 @@
                 <button>Post</button>
             </form>
         </div>
+
         {% for post in all_posts %}
         <div id="post">
             <h5>{{ post.user.first_name }} {{ post.user.last_name }}</h5>
             <p>{{ post.body }}</p>
             {% if post.user.id == request.session.logged_in %}
-            <a href="/post/delete/{{post.id}}">delete</a>
+            <a href="/post/deletepst/{{post.id}}">delete</a>
             {% endif %}
         </div>
         {% endfor %}
+
+        <!-- <div class="comment">
+            <form action="/user/comment" method="POST">
+                {% csrf_token %}
+                <label for="comment">... </label>
+                <input type="text" name="comment">
+                <br>
+                <button>Comment</button>
+            </form>
+        </div>
+
+        {% for comment in all_posts %}
+        <div id="comment">
+            <h5>{{ comment.user.first_name }} {{ comment.user.last_name }}</h5>
+            <p>{{ comment.body }}</p>
+            {% if comment.user.id == request.session.logged_in %}
+            <a href="/comment/deletecmt/{{comment.id}}">delete</a>
+            {% endif %}
+        </div>
+        {% endfor %} -->
+
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

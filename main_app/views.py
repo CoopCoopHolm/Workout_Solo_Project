@@ -1,5 +1,6 @@
+from threading import current_thread
 from django.shortcuts import render, redirect
-from .models import User, Post
+from .models import Comment, UpdateProfile, User, Post
 from django.views.generic import ListView, CreateView
 from django.contrib import messages
 import bcrypt
@@ -78,11 +79,34 @@ def post(request):
         return redirect('/user/dashboard')
     return redirect('/user/dashboard')
 
+# def comment(request):
+#     if request.method == 'POST':
+#         errors = Comment.objects.comment_val(request.POST)
 
-def delete(request, post_id):
+#         if len(errors) > 0:
+#             for key, value in errors.items():
+#                 messages.error(request, value)
+#             return redirect('/user/dashboard')
+
+#         user = User.objects.get(id=request.session['logged_in'])
+#         Comment.objects.create(
+#             user=user,
+#             body=request.POST['comment'],
+
+#         )
+#         return redirect('/user/dashboard')
+#     return redirect('/user/dashboard')
+
+
+def deletepst(request, post_id):
     delete = Post.objects.get(id=post_id)
     delete.delete()
     return redirect('/user/dashboard')
+
+# def deletecmt(request, comment_id):
+#     delete = Comment.objects.get(id=comment_id)
+#     delete.delete()
+#     return redirect('/user/dashboard')
 
 
 def profile(request):
@@ -90,6 +114,26 @@ def profile(request):
         'logged_in': User.objects.get(id=request.session['logged_in']),
     }
     return render(request, 'profile.html', context)
+
+def update_profile(request):
+    if request.method == 'POST':
+        errors = UpdateProfile.objects.prof_val(request.POST)
+
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/')
+        update_profile = UpdateProfile.objects.update(
+            bio=request.POST['bio'],
+            location=request.POST['location'],
+            birth_date=request.POST['birth_date'],
+            current_weight=request.POST['current_weight'],
+            goal_weight=request.POST['goal_weight'],
+        )
+        request.session['logged_in'] = new_user.id
+
+        return redirect('/user/profile')
+    return redirect('/user/profile')
 
 def schedule(request):
     context = {

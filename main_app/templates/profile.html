@@ -13,17 +13,44 @@
 </head>
 
 <body>
-    <h1>Hey {{ logged_in.first_name }}, check out your profile.</h1>
-    <!-- <a class="new" href="/trip/trip_form">Create a New Trip!</a> -->
-    <a href="/user/logout"> Logout</a>
-    <br>
-    <a href="/user/dashboard"> Home</a>
-    <br>
-    <a href="/user/schedule"> Schedule</a>
-    <hr>
+    <div id="wrapper">
+        <h1>Hey {{ logged_in.first_name }}, check out your profile.</h1>
+        <a href="/user/logout"> Logout</a>
+        <br>
+        <a href="/user/dashboard"> Home</a>
+        <br>
+        <a href="/user/schedule"> Schedule</a>
+        <hr>
 
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <!-- <div class="update_profile">
+            <form action="/user/profile" method="POST">
+                {% csrf_token %}
+                <label for="bio">Add a bio:</label>
+                <input type="text" name="bio">
+                <br>
+                <label for="location">Where are you?</label>
+                <input type="text" name="location">
+                <br>
+                <label for="birth_date">What is your birtday?</label>
+                <input type="date" name="birth_date">
+                <br>
+                <label for="current_weight">What is your current weight?</label>
+                <input type="number" name="current_weight">
+                <br>
+                <label for="goal_weight">What is your goal weight?</label>
+                <input type="number" name="goal_weight">
+                <br>
+                <button>Update Profile</button>
+            </form>
+        </div> -->
 
-    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
